@@ -15,4 +15,5 @@
     <string name="create_new_event">Create new event</string>
     <string name="share">Share</string>
     <string name="send">Send</string>
+    <string name="communicate">Share</string>
 </resources>
