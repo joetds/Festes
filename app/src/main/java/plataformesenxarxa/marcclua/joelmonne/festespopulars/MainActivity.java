@@ -25,10 +25,18 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final Button button = (Button) findViewById(R.id.boto_cerca);
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button button_search = (Button) findViewById(R.id.boto_cerca);
+        button_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Search.class);
+                startActivity(intent);
+            }
+        });
+
+        final Button button_event = (Button) findViewById(R.id.boto_cerca);
+        button_event.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Event.class);
                 startActivity(intent);
             }
         });
