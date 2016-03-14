@@ -1,7 +1,13 @@
 package plataformesenxarxa.marcclua.joelmonne.festespopulars;
 
-/**
- * Created by Joel Monné on 14/03/2016.
- */
-public class Search {
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class Search extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cerca);
+    }
 }
