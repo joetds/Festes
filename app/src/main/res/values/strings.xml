@@ -8,4 +8,11 @@
     <string name="boto_cerca">Cerca</string>
     <string name="title_activity_event">Event</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="search_text">Text a cercar</string>
+    <string name="search">Search</string>
+    <string name="favourites">Favourites</string>
+    <string name="events_map">Events map</string>
+    <string name="create_new_event">Create new event</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
 </resources>

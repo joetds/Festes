@@ -117,10 +117,20 @@ public class Event extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_event, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+            switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
+                case 0:
+                    View rootView = inflater.inflate(R.layout.fragment_event, container, false);
+                    TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+                    textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                    return rootView;
+
+                case 1:
+                    View mapView = inflater.inflate(R.layout.fragment_map, container, false);
+                    TextView textView2 = (TextView) mapView.findViewById(R.id.section_label);
+                    textView2.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                    return mapView;
+            }
+            return null;
         }
     }
 
@@ -143,7 +153,7 @@ public class Event extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 2 total pages -Event and Map-.
             return 2;
         }
 

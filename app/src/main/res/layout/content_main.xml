@@ -17,21 +17,19 @@
         android:layout_height="wrap_content"
         android:text="Hello World!"
         android:id="@+id/Tipus" />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello !"
-        android:id="@+id/Cerca" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/Tipus_label" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/Cerca_label" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/search_text"
+        android:layout_above="@+id/boto_cerca"
+        android:layout_toRightOf="@+id/Tipus"
+        android:layout_toEndOf="@+id/Tipus"
+        android:layout_marginBottom="71dp"
+        android:id="@+id/search_text" />
+
 
     <Button
         android:layout_width="wrap_content"
@@ -54,4 +52,5 @@
         android:layout_marginLeft="46dp"
         android:layout_marginStart="46dp"
         android:layout_marginTop="59dp" />
+
 </RelativeLayout>
