@@ -125,9 +125,9 @@ public class Event extends AppCompatActivity {
                     return rootView;
 
                 case 1:
-                    View mapView = inflater.inflate(R.layout.fragment_map, container, false);
-                    TextView textView2 = (TextView) mapView.findViewById(R.id.section_label);
-                    textView2.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                    View mapView = inflater.inflate(R.layout.fragment_event, container, false);
+                    //TextView textView2 = (TextView) mapView.findViewById(R.id.section_label);
+                    //textView2.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
                     return mapView;
             }
             return null;

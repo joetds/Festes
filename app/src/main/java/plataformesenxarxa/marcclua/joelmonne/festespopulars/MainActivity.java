@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        final Button button_event = (Button) findViewById(R.id.boto_cerca);
+        final Button button_event = (Button) findViewById(R.id.anar_esdeveniment);
         button_event.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Event.class);
