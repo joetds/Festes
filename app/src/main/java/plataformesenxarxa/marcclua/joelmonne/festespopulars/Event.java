@@ -1,22 +1,20 @@
 package plataformesenxarxa.marcclua.joelmonne.festespopulars;
 
-import android.support.design.widget.TabLayout;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
 
 public class Event extends AppCompatActivity {
@@ -59,7 +57,7 @@ public class Event extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, getString(R.string.create_button_click), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -126,8 +124,6 @@ public class Event extends AppCompatActivity {
 
                 case 2:
                     View mapView = inflater.inflate(R.layout.activity_maps, container, false);
-                    //TextView textView2 = (TextView) mapView.findViewById(R.id.section_label);
-                    //textView2.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
                     return mapView;
             }
             return null;
