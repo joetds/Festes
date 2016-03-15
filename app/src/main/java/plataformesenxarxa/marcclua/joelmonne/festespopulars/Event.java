@@ -55,7 +55,7 @@ public class Event extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_favourites);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,14 +118,14 @@ public class Event extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
-                case 0:
+                case 1:
                     View rootView = inflater.inflate(R.layout.fragment_event, container, false);
                     TextView textView = (TextView) rootView.findViewById(R.id.section_label);
                     textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
                     return rootView;
 
-                case 1:
-                    View mapView = inflater.inflate(R.layout.fragment_event, container, false);
+                case 2:
+                    View mapView = inflater.inflate(R.layout.activity_maps, container, false);
                     //TextView textView2 = (TextView) mapView.findViewById(R.id.section_label);
                     //textView2.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
                     return mapView;
