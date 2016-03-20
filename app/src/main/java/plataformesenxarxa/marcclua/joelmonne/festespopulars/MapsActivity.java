@@ -2,6 +2,7 @@ package plataformesenxarxa.marcclua.joelmonne.festespopulars;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -11,6 +12,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    private static final LatLng center_of_catalonia = new LatLng(41.6677272, 1.6423192);
+    private static final LatLng torres_de_segre = new LatLng(41.533333, 0.5166667);
 
     private GoogleMap mMap;
 
@@ -22,6 +26,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    public void showCatalonia(View v) {
+        if (mMap == null) {
+            return;
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center_of_catalonia, 7f));
     }
 
 
@@ -38,9 +49,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        showCatalonia(null);
+        // Add a marker in Torres de Segre
+        mMap.addMarker(new MarkerOptions().position(torres_de_segre).title("Torres de Segre"));
     }
 }

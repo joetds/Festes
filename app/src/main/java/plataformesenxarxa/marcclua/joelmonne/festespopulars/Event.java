@@ -124,6 +124,7 @@ public class Event extends AppCompatActivity {
 
                 case 2:
                     View mapView = inflater.inflate(R.layout.activity_maps, container, false);
+
                     return mapView;
             }
             return null;
