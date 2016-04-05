@@ -27,4 +27,5 @@
     <string name="title_activity_maps2">Map</string>
     <string name="title_activity_maps3">Map</string>
     <string name="marker_pressed_information">If you click on the event you will be able to go to Google Maps for route</string>
+    <string name="title_activity_search">Search</string>
 </resources>
