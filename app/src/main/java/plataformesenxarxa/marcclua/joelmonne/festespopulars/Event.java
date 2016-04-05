@@ -1,5 +1,6 @@
 package plataformesenxarxa.marcclua.joelmonne.festespopulars;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Event extends AppCompatActivity {
@@ -120,12 +122,14 @@ public class Event extends AppCompatActivity {
                     View rootView = inflater.inflate(R.layout.fragment_event, container, false);
                     TextView textView = (TextView) rootView.findViewById(R.id.section_label);
                     textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                    final Button button_location = (Button) rootView.findViewById(R.id.coordenades);
+                    button_location.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getActivity(), MapsActivity.class);
+                            startActivity(intent);
+                        }
+                    });
                     return rootView;
-
-                case 2:
-                    View mapView = inflater.inflate(R.layout.activity_maps, container, false);
-
-                    return mapView;
             }
             return null;
         }
@@ -151,7 +155,7 @@ public class Event extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 2 total pages -Event and Map-.
-            return 2;
+            return 1;
         }
 
         @Override
@@ -159,8 +163,6 @@ public class Event extends AppCompatActivity {
             switch (position) {
                 case 0:
                     return "EVENT";
-                case 1:
-                    return "MAP";
             }
             return null;
         }
