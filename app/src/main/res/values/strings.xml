@@ -26,4 +26,5 @@
     <string name="permission_required_toast">Location permission is required for this demo.</string>
     <string name="title_activity_maps2">Map</string>
     <string name="title_activity_maps3">Map</string>
+    <string name="marker_pressed_information">If you click on the event you will be able to go to Google Maps for route</string>
 </resources>

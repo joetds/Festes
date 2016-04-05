@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -53,8 +54,10 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
         mMap = map;
 
         mMap.setOnMyLocationButtonClickListener(this);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(torres_de_segre, 5));
         enableMyLocation();
         addMarkers();
+        Toast.makeText(this, R.string.marker_pressed_information, Toast.LENGTH_LONG).show();
     }
 
     private void addMarkers() {
@@ -62,7 +65,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
                 .position(torres_de_segre)
                 .title("Torres de Segre")
                 .snippet("Snippet")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
     }
 
         /**
