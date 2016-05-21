@@ -13,44 +13,44 @@
     tools:showIn="@layout/app_bar_main">
 
     <TextView
+        android:id="@+id/Tipus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/search"
-        android:id="@+id/Tipus" />
+        android:text="@string/search" />
 
 
     <EditText
+        android:id="@+id/search_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/search_text"
         android:layout_above="@+id/boto_cerca"
-        android:layout_toRightOf="@+id/Tipus"
-        android:layout_toEndOf="@+id/Tipus"
         android:layout_marginBottom="71dp"
-        android:id="@+id/search_text" />
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/boto_cerca"
-        android:id="@+id/boto_cerca"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="179dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="boto_esdeveniment"
-        android:id="@+id/anar_esdeveniment"
-        android:layout_alignTop="@+id/boto_cerca"
-        android:layout_toRightOf="@+id/Tipus"
         android:layout_toEndOf="@+id/Tipus"
+        android:layout_toRightOf="@+id/Tipus"
+        android:hint="@string/search_text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+    <Button
+        android:id="@+id/boto_cerca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="179dp"
+        android:text="@string/boto_cerca" />
+
+    <Button
+        android:id="@+id/anar_esdeveniment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/boto_cerca"
         android:layout_marginLeft="46dp"
         android:layout_marginStart="46dp"
-        android:layout_marginTop="59dp" />
+        android:layout_marginTop="59dp"
+        android:layout_toEndOf="@+id/Tipus"
+        android:layout_toRightOf="@+id/Tipus"
+        android:text="boto_esdeveniment" />
 
 </RelativeLayout>

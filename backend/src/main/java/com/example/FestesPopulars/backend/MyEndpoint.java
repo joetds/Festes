@@ -21,15 +21,17 @@ import com.google.appengine.api.datastore.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
-/** An endpoint class we are exposing */
+/**
+ * An endpoint class we are exposing
+ */
 @Api(
-  name = "festespopularsAPI",
-  version = "v1",
-  namespace = @ApiNamespace(
-    ownerDomain = "backend.FestesPopulars.example.com",
-    ownerName = "backend.FestesPopulars.example.com",
-    packagePath=""
-  )
+        name = "festespopularsAPI",
+        version = "v1",
+        namespace = @ApiNamespace(
+                ownerDomain = "backend.FestesPopulars.example.com",
+                ownerName = "backend.FestesPopulars.example.com",
+                packagePath = ""
+        )
 )
 public class MyEndpoint {
 
@@ -39,8 +41,11 @@ public class MyEndpoint {
         Transaction txn = datastoreService.beginTransaction();
         try {
             Key taskBeanParentKey = KeyFactory.createKey("TaskBeanParent", "festespopulars.txt");
-            Entity taskEntity = new Entity("TaskBean", taskBean.getId(), taskBeanParentKey);
-            taskEntity.setProperty("data", taskBean.getData());
+            Entity taskEntity = new Entity("TaskBean", taskBean.getPlace() + taskBean.getName(), taskBeanParentKey);
+            taskEntity.setProperty("name", taskBean.getName());
+            taskEntity.setProperty("place", taskBean.getPlace());
+            taskEntity.setProperty("location", taskBean.getLocation());
+            taskEntity.setProperty("date", taskBean.getDate());
             datastoreService.put(taskEntity);
             txn.commit();
         } finally {
@@ -56,11 +61,13 @@ public class MyEndpoint {
         Key taskBeanParentKey = KeyFactory.createKey("TaskBeanParent", "festespopulars.txt");
         Query query = new Query(taskBeanParentKey);
         List<Entity> results = datastoreService.prepare(query).asList(FetchOptions.Builder.withDefaults());
-        ArrayList<TaskBean> taskBeans = new ArrayList<TaskBean>();
+        ArrayList<TaskBean> taskBeans = new ArrayList<>();
         for (Entity result : results) {
             TaskBean taskBean = new TaskBean();
-            taskBean.setId(result.getKey().getId());
-            taskBean.setData((String) result.getProperty("data"));
+            taskBean.setName((String) result.getProperty("name"));
+            taskBean.setPlace((String) result.getProperty("place"));
+            taskBean.setLocation((String) result.getProperty("location"));
+            taskBean.setDate((String) result.getProperty("date"));
             taskBeans.add(taskBean);
         }
 
