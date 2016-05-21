@@ -9,6 +9,7 @@ package com.example.FestesPopulars.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.google.api.server.spi.config.Named;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -36,16 +37,16 @@ import java.util.List;
 public class MyEndpoint {
 
     @ApiMethod(name = "storeTask")
-    public void storeTask(TaskBean taskBean) {
+    public void storeTask(EventBean eventBean) {
         DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
         Transaction txn = datastoreService.beginTransaction();
         try {
             Key taskBeanParentKey = KeyFactory.createKey("TaskBeanParent", "festespopulars.txt");
-            Entity taskEntity = new Entity("TaskBean", taskBean.getPlace() + taskBean.getName(), taskBeanParentKey);
-            taskEntity.setProperty("name", taskBean.getName());
-            taskEntity.setProperty("place", taskBean.getPlace());
-            taskEntity.setProperty("location", taskBean.getLocation());
-            taskEntity.setProperty("date", taskBean.getDate());
+            Entity taskEntity = new Entity("EventBean", eventBean.getName(), taskBeanParentKey);
+            taskEntity.setProperty("name", eventBean.getName());
+            taskEntity.setProperty("place", eventBean.getPlace());
+            taskEntity.setProperty("location", eventBean.getLocation());
+            taskEntity.setProperty("date", eventBean.getDate());
             datastoreService.put(taskEntity);
             txn.commit();
         } finally {
@@ -56,22 +57,22 @@ public class MyEndpoint {
     }
 
     @ApiMethod(name = "getTasks")
-    public List<TaskBean> getTasks() {
+    public List<EventBean> getTasks(@Named("place") String place) {
         DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
         Key taskBeanParentKey = KeyFactory.createKey("TaskBeanParent", "festespopulars.txt");
-        Query query = new Query(taskBeanParentKey);
+        Query query = new Query(taskBeanParentKey).setFilter(new Query.FilterPredicate("place", Query.FilterOperator.EQUAL, place));
         List<Entity> results = datastoreService.prepare(query).asList(FetchOptions.Builder.withDefaults());
-        ArrayList<TaskBean> taskBeans = new ArrayList<>();
+        ArrayList<EventBean> eventBeen = new ArrayList<>();
         for (Entity result : results) {
-            TaskBean taskBean = new TaskBean();
-            taskBean.setName((String) result.getProperty("name"));
-            taskBean.setPlace((String) result.getProperty("place"));
-            taskBean.setLocation((String) result.getProperty("location"));
-            taskBean.setDate((String) result.getProperty("date"));
-            taskBeans.add(taskBean);
+            EventBean eventBean = new EventBean();
+            eventBean.setName((String) result.getProperty("name"));
+            eventBean.setPlace((String) result.getProperty("place"));
+            eventBean.setLocation((String) result.getProperty("location"));
+            eventBean.setDate((String) result.getProperty("date"));
+            eventBeen.add(eventBean);
         }
 
-        return taskBeans;
+        return eventBeen;
     }
 
     @ApiMethod(name = "clearTasks")

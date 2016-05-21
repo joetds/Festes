@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Event"
+            android:name=".EventActivity"
             android:label="@string/title_activity_event"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" >
@@ -57,10 +57,10 @@
             android:label="@string/title_activity_maps" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="plataformesenxarxa.marcclua.joelmonne.festespopulars.Event" />
+                android:value="plataformesenxarxa.marcclua.joelmonne.festespopulars.EventActivity" />
         </activity>
         <activity
-            android:name=".Search"
+            android:name=".SearchActivity"
             android:label="@string/title_activity_search"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" >

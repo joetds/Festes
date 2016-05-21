@@ -1,7 +1,7 @@
 package com.example.FestesPopulars.backend;
 
 /** The object model for the data we are sending through endpoints */
-public class TaskBean {
+public class EventBean {
     private String name;
     private String place;
     private String location;
