@@ -36,8 +36,8 @@ import java.util.List;
 )
 public class MyEndpoint {
 
-    @ApiMethod(name = "storeTask")
-    public void storeTask(EventBean eventBean) {
+    @ApiMethod(name = "storeEvent")
+    public void storeEvent(EventBean eventBean) {
         DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
         Transaction txn = datastoreService.beginTransaction();
         try {
@@ -56,11 +56,11 @@ public class MyEndpoint {
         }
     }
 
-    @ApiMethod(name = "getTasks")
-    public List<EventBean> getTasks(@Named("place") String place) {
+    @ApiMethod(name = "getEventByPlace")
+    public List<EventBean> getEventByPlace(@Named("place") String place) {
         DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
         Key taskBeanParentKey = KeyFactory.createKey("TaskBeanParent", "festespopulars.txt");
-        Query query = new Query(taskBeanParentKey).setFilter(new Query.FilterPredicate("place", Query.FilterOperator.EQUAL, place));
+        Query query = new Query("EventBean").setAncestor(taskBeanParentKey).setFilter(new Query.FilterPredicate("place", Query.FilterOperator.EQUAL, place));
         List<Entity> results = datastoreService.prepare(query).asList(FetchOptions.Builder.withDefaults());
         ArrayList<EventBean> eventBeen = new ArrayList<>();
         for (Entity result : results) {
@@ -71,12 +71,29 @@ public class MyEndpoint {
             eventBean.setDate((String) result.getProperty("date"));
             eventBeen.add(eventBean);
         }
-
         return eventBeen;
     }
 
-    @ApiMethod(name = "clearTasks")
-    public void clearTasks() {
+    @ApiMethod(name = "getAllEvents")
+    public List<EventBean> getAllEvents() {
+        DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
+        Key taskBeanParentKey = KeyFactory.createKey("TaskBeanParent", "festespopulars.txt");
+        Query query = new Query(taskBeanParentKey);
+        List<Entity> results = datastoreService.prepare(query).asList(FetchOptions.Builder.withDefaults());
+        ArrayList<EventBean> eventBeen = new ArrayList<>();
+        for (Entity result : results) {
+            EventBean eventBean = new EventBean();
+            eventBean.setName((String) result.getProperty("name"));
+            eventBean.setPlace((String) result.getProperty("place"));
+            eventBean.setLocation((String) result.getProperty("location"));
+            eventBean.setDate((String) result.getProperty("date"));
+            eventBeen.add(eventBean);
+        }
+        return eventBeen;
+    }
+
+    @ApiMethod(name = "clearEvents")
+    public void clearEvents() {
         DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
         Transaction txn = datastoreService.beginTransaction();
         try {
