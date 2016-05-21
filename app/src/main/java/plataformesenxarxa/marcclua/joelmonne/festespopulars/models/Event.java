@@ -4,14 +4,13 @@ import com.example.festespopulars.backend.festespopularsAPI.model.EventBean;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Event implements Serializable {
     private String name;
     private String description;
     private String place;
     private LatLng location;
-    private Date date;
+    private String date;
 
     public static EventBean eventToEventBean(Event event) {
         EventBean eventBean = new EventBean();
@@ -19,7 +18,7 @@ public class Event implements Serializable {
         eventBean.setDescription(event.getDescription());
         eventBean.setPlace(event.getPlace());
         eventBean.setLocation(event.getLocation().toString());
-        eventBean.setDate(event.getDate().toString());
+        eventBean.setDate(event.getDate());
         return eventBean;
     }
 
@@ -55,11 +54,11 @@ public class Event implements Serializable {
         this.location = location;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

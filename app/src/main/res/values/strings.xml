@@ -18,6 +18,7 @@
     <string name="communicate">Share</string>
     <string name="title_activity_maps">Map</string>
     <string name="favourite_added">Event added to your favourites</string>
+    <string name="event_saved">Event added saved</string>
     <string name="create_button_click">Create your event</string>
 
     <!--    Permissions    -->
