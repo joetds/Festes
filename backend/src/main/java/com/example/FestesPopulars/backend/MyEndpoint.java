@@ -44,6 +44,7 @@ public class MyEndpoint {
             Key taskBeanParentKey = KeyFactory.createKey("TaskBeanParent", "festespopulars.txt");
             Entity taskEntity = new Entity("EventBean", eventBean.getName(), taskBeanParentKey);
             taskEntity.setProperty("name", eventBean.getName());
+            taskEntity.setProperty("description", eventBean.getDescription());
             taskEntity.setProperty("place", eventBean.getPlace());
             taskEntity.setProperty("location", eventBean.getLocation());
             taskEntity.setProperty("date", eventBean.getDate());
@@ -66,6 +67,7 @@ public class MyEndpoint {
         for (Entity result : results) {
             EventBean eventBean = new EventBean();
             eventBean.setName((String) result.getProperty("name"));
+            eventBean.setDescription((String) result.getProperty("description"));
             eventBean.setPlace((String) result.getProperty("place"));
             eventBean.setLocation((String) result.getProperty("location"));
             eventBean.setDate((String) result.getProperty("date"));
@@ -84,6 +86,7 @@ public class MyEndpoint {
         for (Entity result : results) {
             EventBean eventBean = new EventBean();
             eventBean.setName((String) result.getProperty("name"));
+            eventBean.setDescription((String) result.getProperty("description"));
             eventBean.setPlace((String) result.getProperty("place"));
             eventBean.setLocation((String) result.getProperty("location"));
             eventBean.setDate((String) result.getProperty("date"));
