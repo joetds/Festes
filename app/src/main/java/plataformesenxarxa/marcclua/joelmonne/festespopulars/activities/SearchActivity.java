@@ -43,7 +43,7 @@ public class SearchActivity extends AppCompatActivity {
                         new AndroidJsonFactory(), null);
                 FestespopularsAPI api = builder.build();
                 try {
-                    return api.getTaskByPlace(params[0]).execute().getItems();
+                    return api.getEventByPlace(params[0]).execute().getItems();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
