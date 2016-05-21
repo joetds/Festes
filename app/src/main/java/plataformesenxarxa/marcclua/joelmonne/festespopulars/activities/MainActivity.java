@@ -1,4 +1,4 @@
-package plataformesenxarxa.marcclua.joelmonne.festespopulars;
+package plataformesenxarxa.marcclua.joelmonne.festespopulars.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+
+import plataformesenxarxa.marcclua.joelmonne.festespopulars.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

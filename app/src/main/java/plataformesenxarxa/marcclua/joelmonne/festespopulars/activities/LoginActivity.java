@@ -1,4 +1,4 @@
-package plataformesenxarxa.marcclua.joelmonne.festespopulars;
+package plataformesenxarxa.marcclua.joelmonne.festespopulars.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -31,6 +31,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import plataformesenxarxa.marcclua.joelmonne.festespopulars.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

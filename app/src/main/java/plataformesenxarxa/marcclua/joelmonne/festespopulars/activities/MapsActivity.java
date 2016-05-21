@@ -1,4 +1,4 @@
-package plataformesenxarxa.marcclua.joelmonne.festespopulars;
+package plataformesenxarxa.marcclua.joelmonne.festespopulars.activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -16,6 +16,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import plataformesenxarxa.marcclua.joelmonne.festespopulars.utils.PermissionUtils;
+import plataformesenxarxa.marcclua.joelmonne.festespopulars.R;
 
 public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLocationButtonClickListener,
         OnMapReadyCallback,

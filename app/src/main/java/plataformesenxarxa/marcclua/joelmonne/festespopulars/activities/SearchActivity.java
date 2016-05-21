@@ -1,8 +1,10 @@
-package plataformesenxarxa.marcclua.joelmonne.festespopulars;
+package plataformesenxarxa.marcclua.joelmonne.festespopulars.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
+import plataformesenxarxa.marcclua.joelmonne.festespopulars.R;
 
 public class SearchActivity extends AppCompatActivity {
 
