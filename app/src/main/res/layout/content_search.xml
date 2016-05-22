@@ -12,9 +12,10 @@
     tools:context=".activities.ResultSearchActivity"
     tools:showIn="@layout/activity_search">
 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
+    <fragment
+        android:id="@+id/content"
+        android:name="plataformesenxarxa.marcclua.joelmonne.festespopulars.fragments.ResultSearchFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
