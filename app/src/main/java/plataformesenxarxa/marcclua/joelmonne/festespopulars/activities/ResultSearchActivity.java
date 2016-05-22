@@ -20,7 +20,7 @@ import java.util.List;
 
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.R;
 
-public class SearchActivity extends AppCompatActivity {
+public class ResultSearchActivity extends AppCompatActivity {
 
     private Context context;
 
@@ -64,6 +64,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void showToast(String text) {
-        Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(ResultSearchActivity.this, text, Toast.LENGTH_SHORT).show();
     }
 }

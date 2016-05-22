@@ -30,7 +30,7 @@ import java.util.Calendar;
 
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.R;
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.activities.MapsActivity;
-import plataformesenxarxa.marcclua.joelmonne.festespopulars.activities.SearchActivity;
+import plataformesenxarxa.marcclua.joelmonne.festespopulars.activities.ResultSearchActivity;
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.models.Event;
 
 public class SearchFragment extends Fragment {
