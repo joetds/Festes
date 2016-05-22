@@ -32,14 +32,8 @@
         android:text="@string/boto_cerca" />
 
     <Button
-        android:id="@+id/anar_esdeveniment"
+        android:id="@+id/test_gcm"
         android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:layout_height="wrap_content"
-        android:text="boto_esdeveniment" />
-    <Button
-        android:layout_width="wrap_content"
-        android:onClick="testGCM"
         android:layout_height="wrap_content"
         android:text="Test GCM" />
 
