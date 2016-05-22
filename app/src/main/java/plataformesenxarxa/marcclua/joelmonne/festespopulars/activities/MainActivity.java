@@ -3,8 +3,10 @@ package plataformesenxarxa.marcclua.joelmonne.festespopulars.activities;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -14,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +29,9 @@ import android.widget.Toast;
 
 import com.example.festespopulars.backend.festespopularsAPI.FestespopularsAPI;
 import com.example.festespopulars.backend.festespopularsAPI.model.EventBean;
+import com.example.festespopulars.backend.messaging.Messaging;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -34,10 +40,15 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.R;
+import plataformesenxarxa.marcclua.joelmonne.festespopulars.messaging.MessagingPreferences;
+import plataformesenxarxa.marcclua.joelmonne.festespopulars.messaging.RegistrationIntentService;
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.models.Event;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private static final String TAG = "MainActivity";
 
     private Context context;
     private View main_content_view;
@@ -50,6 +61,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         context = MainActivity.this;
+        configureMessaging();
         final Button button_search = (Button) findViewById(R.id.boto_cerca);
         button_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -149,7 +161,20 @@ public class MainActivity extends AppCompatActivity
                             .setAction("Undo", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-
+                                    new AsyncTask<Void, Void, Void>() {
+                                        @Override
+                                        protected Void doInBackground(Void... params) {
+                                            Messaging.Builder builder = new Messaging.Builder(AndroidHttp.newCompatibleTransport(),
+                                                    new AndroidJsonFactory(), null);
+                                            Messaging messaging = builder.build();
+                                            try {
+                                                messaging.messagingEndpoint().sendMessage("Ja funcionaaaaaa!!!").execute();
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                            return null;
+                                        }
+                                    }.execute();
                                 }
                             }).show();
                 }
@@ -239,5 +264,57 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void configureMessaging() {
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
+        boolean sentToken = sharedPreferences
+                .getBoolean(MessagingPreferences.SENT_TOKEN_TO_SERVER, false);
+        if (!sentToken) {
+            if (checkPlayServices()) {
+                // Start IntentService to register this application with GCM.
+                Intent intent = new Intent(this, RegistrationIntentService.class);
+                startService(intent);
+            }
+        }
+    }
+
+    /**
+     * Check the device to make sure it has the Google Play Services APK. If
+     * it doesn't, display a dialog that allows users to download the APK from
+     * the Google Play Store or enable it in the device's system settings.
+     */
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i(TAG, "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public void testGCM(View view) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                Messaging.Builder builder = new Messaging.Builder(AndroidHttp.newCompatibleTransport(),
+                        new AndroidJsonFactory(), null);
+                Messaging messaging = builder.build();
+                try {
+                    messaging.messagingEndpoint().sendMessage("Ja funcionaaaaaa!!!").execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        }.execute();
     }
 }

@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "47456736414",
+    "project_id": "festespopulars-1318"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47456736414:android:311aab2fe424ed9c",
+        "android_client_info": {
+          "package_name": "plataformesenxarxa.marcclua.joelmonne.festespopulars"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN7kSLj6f4afMs5m6qYOOPCcLPlKdcS9M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

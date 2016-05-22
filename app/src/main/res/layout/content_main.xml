@@ -37,5 +37,11 @@
         android:visibility="gone"
         android:layout_height="wrap_content"
         android:text="boto_esdeveniment" />
+    <Button
+        android:layout_width="wrap_content"
+        android:onClick="testGCM"
+        android:layout_height="wrap_content"
+        android:text="Test GCM" />
+
 
 </LinearLayout>
