@@ -1,23 +1,23 @@
 package plataformesenxarxa.marcclua.joelmonne.festespopulars.models;
 
 import com.example.festespopulars.backend.festespopularsAPI.model.EventBean;
-import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
 
 public class Event implements Serializable {
+    public static final String event_key = "event";
     private String name;
     private String description;
     private String place;
-    private LatLng location;
+    private String location;
     private String date;
 
     public static EventBean eventToEventBean(Event event) {
         EventBean eventBean = new EventBean();
         eventBean.setName(event.getName());
         eventBean.setDescription(event.getDescription());
-        eventBean.setPlace(event.getPlace());
-        eventBean.setLocation(event.getLocation().toString());
+        eventBean.setPlace(event.getPlace().toLowerCase());
+        eventBean.setLocation(event.getLocation());
         eventBean.setDate(event.getDate());
         return eventBean;
     }
@@ -46,11 +46,11 @@ public class Event implements Serializable {
         this.place = place;
     }
 
-    public LatLng getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(LatLng location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 

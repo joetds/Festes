@@ -1,5 +1,6 @@
 package plataformesenxarxa.marcclua.joelmonne.festespopulars.fragments;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.content.Context;
@@ -21,7 +22,6 @@ import android.widget.Toast;
 import com.example.festespopulars.backend.festespopularsAPI.FestespopularsAPI;
 import com.example.festespopulars.backend.festespopularsAPI.model.EventBean;
 import com.example.festespopulars.backend.messaging.Messaging;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.R;
+import plataformesenxarxa.marcclua.joelmonne.festespopulars.activities.MapsActivity;
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.activities.SearchActivity;
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.models.Event;
 
@@ -85,7 +86,7 @@ public class SearchFragment extends Fragment {
                 dialogView.findViewById(R.id.save).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (saveEvent(dialogView)) {
+                        if (goMap(dialogView)) {
                             dialog.dismiss();
                         }
                     }
@@ -120,48 +121,12 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    private boolean saveEvent(View eventView) {
+    private boolean goMap(View eventView) {
         Event event = checkFields(eventView);
         if (event != null) {
-            new AsyncTask<EventBean, Void, Void>() {
-                @Override
-                protected Void doInBackground(EventBean... params) {
-                    FestespopularsAPI.Builder builder = new FestespopularsAPI.Builder(AndroidHttp.newCompatibleTransport(),
-                            new AndroidJsonFactory(), null);
-                    FestespopularsAPI api = builder.build();
-                    try {
-                        api.storeEvent(params[0]).execute();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                }
-
-                @Override
-                protected void onPostExecute(Void aVoid) {
-                    super.onPostExecute(aVoid);
-                    Snackbar.make(getView(), getString(R.string.event_saved), Snackbar.LENGTH_LONG)
-                            .setAction("Undo", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    new AsyncTask<Void, Void, Void>() {
-                                        @Override
-                                        protected Void doInBackground(Void... params) {
-                                            Messaging.Builder builder = new Messaging.Builder(AndroidHttp.newCompatibleTransport(),
-                                                    new AndroidJsonFactory(), null);
-                                            Messaging messaging = builder.build();
-                                            try {
-                                                messaging.messagingEndpoint().sendMessage("Ja funcionaaaaaa!!!").execute();
-                                            } catch (IOException e) {
-                                                e.printStackTrace();
-                                            }
-                                            return null;
-                                        }
-                                    }.execute();
-                                }
-                            }).show();
-                }
-            }.execute(Event.eventToEventBean(event));
+            Intent intent = new Intent(getActivity(), MapsActivity.class);
+            intent.putExtra(Event.event_key, event);
+            startActivityForResult(intent, 1);
             return true;
         } else {
             showToast("Check empty fields");
@@ -187,12 +152,61 @@ public class SearchFragment extends Fragment {
         if (date.equals("")) return null;
         event.setDate(date);
 
-        event.setLocation(new LatLng(41.533333, 0.5166667));
-
         return event;
     }
 
     private void showToast(String text) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
+            Event event = (Event) data.getSerializableExtra(Event.event_key);
+            saveEvent(event);
+        }
+    }
+
+    private void saveEvent(Event event) {
+        new AsyncTask<EventBean, Void, Void>() {
+            @Override
+            protected Void doInBackground(EventBean... params) {
+                FestespopularsAPI.Builder builder = new FestespopularsAPI.Builder(AndroidHttp.newCompatibleTransport(),
+                        new AndroidJsonFactory(), null);
+                FestespopularsAPI api = builder.build();
+                try {
+                    api.storeEvent(params[0]).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                Snackbar.make(getView(), getString(R.string.event_saved), Snackbar.LENGTH_LONG)
+                        .setAction("Undo", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                new AsyncTask<Void, Void, Void>() {
+                                    @Override
+                                    protected Void doInBackground(Void... params) {
+                                        Messaging.Builder builder = new Messaging.Builder(AndroidHttp.newCompatibleTransport(),
+                                                new AndroidJsonFactory(), null);
+                                        Messaging messaging = builder.build();
+                                        try {
+                                            messaging.messagingEndpoint().sendMessage("Ja funcionaaaaaa!!!").execute();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        return null;
+                                    }
+                                }.execute();
+                            }
+                        }).show();
+            }
+        }.execute(Event.eventToEventBean(event));
     }
 }
