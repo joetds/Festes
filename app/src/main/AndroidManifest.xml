@@ -115,6 +115,8 @@
         <service
             android:name=".messaging.RegistrationIntentService"
             android:exported="false" />
+
+        <activity android:name=".activities.ResultSearchDetailActivity"></activity>
     </application>
 
 </manifest>
