@@ -55,9 +55,13 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 EditText text = (EditText) getView().findViewById(R.id.search_text);
                 String searchText = text.getText().toString();
-                Intent intent = new Intent(context, SearchActivity.class);
-                intent.putExtra("search", searchText);
-                startActivity(intent);
+                if (!searchText.equals("")) {
+                    Intent intent = new Intent(context, ResultSearchActivity.class);
+                    intent.putExtra("search", searchText);
+                    startActivity(intent);
+                }else {
+                    showToast("Camp de busqueda buit");
+                }
             }
         });
 
