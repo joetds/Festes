@@ -23,9 +23,9 @@ public class ResultSearchActivity extends AppCompatActivity implements ResultSea
 
     @Override
     public void onEventClick(Event event) {
-        ResultSearchDetailFragment fragment = (ResultSearchDetailFragment) getFragmentManager().findFragmentById(R.id.detail);
+        ResultSearchDetailFragment fragment = (ResultSearchDetailFragment) getSupportFragmentManager().findFragmentById(R.id.detail);
         if (fragment != null && fragment.isInLayout()) {
-            fragment.update(event);
+            fragment.setEvent(event);
         } else {
             Intent intent = new Intent(ResultSearchActivity.this, ResultSearchDetailActivity.class);
             intent.putExtra(Event.event_key, event);

@@ -14,7 +14,7 @@ public class ResultSearchDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_search_detail);
         Event event = (Event) getIntent().getSerializableExtra(Event.event_key);
-        ResultSearchDetailFragment fragment = (ResultSearchDetailFragment) getFragmentManager().findFragmentById(R.id.detail);
-        fragment.update(event);
+        ResultSearchDetailFragment fragment = (ResultSearchDetailFragment) getSupportFragmentManager().findFragmentById(R.id.detail);
+        fragment.setEvent(event);
     }
 }

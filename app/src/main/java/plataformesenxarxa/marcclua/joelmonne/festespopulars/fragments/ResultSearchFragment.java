@@ -77,6 +77,8 @@ public class ResultSearchFragment extends ListFragment {
                             listener.onEventClick(new Event(eventBeen.get(position)));
                         }
                     });
+                    if (eventBeen.size() > 0) listener.onEventClick(new Event(eventBeen.get(0)));
+                    getActivity().finish();
                 }
             }
         }.execute(search);

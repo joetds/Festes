@@ -104,25 +104,6 @@ public class SearchFragment extends Fragment {
                 dialog.show();
             }
         });
-        getView().findViewById(R.id.test_gcm).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AsyncTask<Void, Void, Void>() {
-                    @Override
-                    protected Void doInBackground(Void... params) {
-                        Messaging.Builder builder = new Messaging.Builder(AndroidHttp.newCompatibleTransport(),
-                                new AndroidJsonFactory(), null);
-                        Messaging messaging = builder.build();
-                        try {
-                            messaging.messagingEndpoint().sendMessage("Ja funcionaaaaaa!!!").execute();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        return null;
-                    }
-                }.execute();
-            }
-        });
     }
 
     private boolean goMap(View eventView) {

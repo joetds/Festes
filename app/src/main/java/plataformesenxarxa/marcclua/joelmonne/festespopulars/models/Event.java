@@ -1,6 +1,7 @@
 package plataformesenxarxa.marcclua.joelmonne.festespopulars.models;
 
 import com.example.festespopulars.backend.festespopularsAPI.model.EventBean;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
 
@@ -63,6 +64,13 @@ public class Event implements Serializable {
     public String getLocation() {
         return location;
     }
+    public LatLng getLocationAsLatlng() {
+        String[] split = location.split(",");
+        double latitude = Double.parseDouble(split[0]);
+        double longitude = Double.parseDouble(split[1]);
+        return new LatLng(latitude,longitude);
+    }
+
 
     public void setLocation(String location) {
         this.location = location;
