@@ -15,7 +15,9 @@ public class Event implements Serializable {
     public Event(EventBean eventBean) {
         this.setName(eventBean.getName());
         this.setDescription(eventBean.getDescription());
-        this.setPlace(eventBean.getPlace().toLowerCase());
+        String place = eventBean.getPlace();
+        place = place.substring(0, 1).toUpperCase() + place.substring(1);
+        this.setPlace(place);
         this.setLocation(eventBean.getLocation());
         this.setDate(eventBean.getDate());
     }

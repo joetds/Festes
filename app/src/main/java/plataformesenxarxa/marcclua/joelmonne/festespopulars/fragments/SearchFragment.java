@@ -59,7 +59,7 @@ public class SearchFragment extends Fragment {
                     Intent intent = new Intent(context, ResultSearchActivity.class);
                     intent.putExtra("search", searchText);
                     startActivity(intent);
-                }else {
+                } else {
                     showToast("Camp de busqueda buit");
                 }
             }
@@ -146,7 +146,8 @@ public class SearchFragment extends Fragment {
         event.setName(name);
 
         String description = ((TextView) eventView.findViewById(R.id.description)).getText().toString();
-        event.setDescription(description);
+        if (name.equals("")) event.setDescription("No hi ha descripció per aquest event");
+        else event.setDescription(description);
 
         String place = ((TextView) eventView.findViewById(R.id.place)).getText().toString();
         if (place.equals("")) return null;
