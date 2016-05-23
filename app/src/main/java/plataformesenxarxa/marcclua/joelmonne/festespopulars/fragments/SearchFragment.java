@@ -146,7 +146,7 @@ public class SearchFragment extends Fragment {
         event.setName(name);
 
         String description = ((TextView) eventView.findViewById(R.id.description)).getText().toString();
-        if (name.equals("")) event.setDescription("No hi ha descripció per aquest event");
+        if (description.equals("")) event.setDescription("No hi ha descripció per aquest event");
         else event.setDescription(description);
 
         String place = ((TextView) eventView.findViewById(R.id.place)).getText().toString();
