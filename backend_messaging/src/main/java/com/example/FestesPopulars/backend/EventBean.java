@@ -1,12 +1,15 @@
 package com.example.FestesPopulars.backend;
 
-/** The object model for the data we are sending through endpoints */
+/**
+ * The object model for the data we are sending through endpoints
+ */
 public class EventBean {
     private String name;
     private String description;
     private String place;
     private String location;
     private String date;
+    private boolean fovourite;
 
     public String getName() {
         return name;
@@ -46,5 +49,13 @@ public class EventBean {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public boolean getFovourite() {
+        return fovourite;
+    }
+
+    public void setFovourite(boolean fovourite) {
+        this.fovourite = fovourite;
     }
 }

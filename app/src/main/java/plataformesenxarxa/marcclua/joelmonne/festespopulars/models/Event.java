@@ -12,6 +12,7 @@ public class Event implements Serializable {
     private String place;
     private String location;
     private String date;
+    private boolean favourite;
 
     public Event(EventBean eventBean) {
         this.setName(eventBean.getName());
@@ -21,6 +22,7 @@ public class Event implements Serializable {
         this.setPlace(place);
         this.setLocation(eventBean.getLocation());
         this.setDate(eventBean.getDate());
+        this.setFavourite(eventBean.getFovourite());
     }
 
     public Event() {
@@ -34,7 +36,16 @@ public class Event implements Serializable {
         eventBean.setPlace(event.getPlace().toLowerCase());
         eventBean.setLocation(event.getLocation());
         eventBean.setDate(event.getDate());
+        eventBean.setFovourite(event.getFavourite());
         return eventBean;
+    }
+
+    public boolean getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
     }
 
     public String getName() {
@@ -64,16 +75,16 @@ public class Event implements Serializable {
     public String getLocation() {
         return location;
     }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public LatLng getLocationAsLatlng() {
         String[] split = location.split(",");
         double latitude = Double.parseDouble(split[0]);
         double longitude = Double.parseDouble(split[1]);
-        return new LatLng(latitude,longitude);
-    }
-
-
-    public void setLocation(String location) {
-        this.location = location;
+        return new LatLng(latitude, longitude);
     }
 
     public String getDate() {

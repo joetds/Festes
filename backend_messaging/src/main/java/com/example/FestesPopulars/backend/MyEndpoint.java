@@ -48,6 +48,7 @@ public class MyEndpoint {
             taskEntity.setProperty("place", eventBean.getPlace());
             taskEntity.setProperty("location", eventBean.getLocation());
             taskEntity.setProperty("date", eventBean.getDate());
+            taskEntity.setProperty("fovourite", eventBean.getFovourite());
             datastoreService.put(taskEntity);
             txn.commit();
         } finally {
@@ -63,17 +64,7 @@ public class MyEndpoint {
         Key taskBeanParentKey = KeyFactory.createKey("TaskBeanParent", "festespopulars.txt");
         Query query = new Query("EventBean").setAncestor(taskBeanParentKey).setFilter(new Query.FilterPredicate("place", Query.FilterOperator.EQUAL, place));
         List<Entity> results = datastoreService.prepare(query).asList(FetchOptions.Builder.withDefaults());
-        ArrayList<EventBean> eventBeen = new ArrayList<>();
-        for (Entity result : results) {
-            EventBean eventBean = new EventBean();
-            eventBean.setName((String) result.getProperty("name"));
-            eventBean.setDescription((String) result.getProperty("description"));
-            eventBean.setPlace((String) result.getProperty("place"));
-            eventBean.setLocation((String) result.getProperty("location"));
-            eventBean.setDate((String) result.getProperty("date"));
-            eventBeen.add(eventBean);
-        }
-        return eventBeen;
+        return getEventBeans(results);
     }
 
     @ApiMethod(name = "getAllEvents")
@@ -82,6 +73,10 @@ public class MyEndpoint {
         Key taskBeanParentKey = KeyFactory.createKey("TaskBeanParent", "festespopulars.txt");
         Query query = new Query(taskBeanParentKey);
         List<Entity> results = datastoreService.prepare(query).asList(FetchOptions.Builder.withDefaults());
+        return getEventBeans(results);
+    }
+
+    private List<EventBean> getEventBeans(List<Entity> results) {
         ArrayList<EventBean> eventBeen = new ArrayList<>();
         for (Entity result : results) {
             EventBean eventBean = new EventBean();
@@ -90,6 +85,7 @@ public class MyEndpoint {
             eventBean.setPlace((String) result.getProperty("place"));
             eventBean.setLocation((String) result.getProperty("location"));
             eventBean.setDate((String) result.getProperty("date"));
+            eventBean.setFovourite((boolean) result.getProperty("fovourite"));
             eventBeen.add(eventBean);
         }
         return eventBeen;

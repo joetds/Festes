@@ -1,5 +1,6 @@
 package plataformesenxarxa.marcclua.joelmonne.festespopulars.fragments;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.festespopulars.backend.festespopularsAPI.FestespopularsAPI;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+
+import java.io.IOException;
 
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.R;
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.models.Event;
@@ -19,6 +26,7 @@ public class EventDetailFragment extends Fragment {
     private TextView description;
     private TextView place;
     private Event event;
+    private TextView favourite;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,15 +40,43 @@ public class EventDetailFragment extends Fragment {
         date = (TextView) getView().findViewById(R.id.date);
         description = (TextView) getView().findViewById(R.id.description);
         place = (TextView) getView().findViewById(R.id.place);
+        favourite = (TextView) getView().findViewById(R.id.favourite);
         FloatingActionButton fab = (FloatingActionButton) getView().findViewById(R.id.add_favourites);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, getString(R.string.create_button_click), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                if (event != null) {
+                    event.setFavourite(!event.getFavourite());
+                    updateEventInCloud(event);
+                }
             }
         });
         if (event != null) update(event);
+    }
+
+    private void updateEventInCloud(final Event event) {
+        new AsyncTask<Event, Void, Void>() {
+            @Override
+            protected Void doInBackground(Event... params) {
+                FestespopularsAPI.Builder builder = new FestespopularsAPI.Builder(AndroidHttp.newCompatibleTransport(),
+                        new AndroidJsonFactory(), null);
+                FestespopularsAPI api = builder.build();
+                try {
+                    api.storeEvent(Event.eventToEventBean(event));
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                update(event);
+            }
+        }.execute(event);
     }
 
     public void setEvent(Event event) {
@@ -53,5 +89,6 @@ public class EventDetailFragment extends Fragment {
         date.setText(event.getDate());
         description.setText(event.getDescription());
         place.setText(event.getPlace());
+        favourite.setText("Es favorit?" + event.getFavourite());
     }
 }
