@@ -77,7 +77,7 @@ public class ResultSearchDetailFragment extends Fragment {
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(event.getLocationAsLatlng(), 5));
                         }
                     });
-                    return SupportMapFragment.newInstance();
+                    return mapFragment;
                 default:
                     return null;
             }
