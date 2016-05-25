@@ -28,7 +28,7 @@ public class EventBean {
     }
 
     public String getPlace() {
-        return place;
+        return place.substring(0, 1).toUpperCase() + place.substring(1);
     }
 
     public void setPlace(String place) {

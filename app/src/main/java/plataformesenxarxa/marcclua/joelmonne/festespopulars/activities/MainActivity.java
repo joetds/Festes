@@ -1,13 +1,13 @@
 package plataformesenxarxa.marcclua.joelmonne.festespopulars.activities;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,6 +20,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.R;
+import plataformesenxarxa.marcclua.joelmonne.festespopulars.fragments.MapFragment;
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.fragments.SearchFragment;
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.messaging.MessagingPreferences;
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.messaging.RegistrationIntentService;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void loadFragment(int resId, Fragment fragment) {
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         if (fragmentManager.findFragmentById(resId) == null) {
             transaction.add(resId, fragment);
@@ -82,7 +83,11 @@ public class MainActivity extends AppCompatActivity
             fragment = SearchFragment.getInstance();
             loadFragment(resId, fragment);
         } else if (id == R.id.nav_favorite) {
+            fragment = MapFragment.getInstance(false);
+            loadFragment(resId, fragment);
         } else if (id == R.id.nav_events) {
+            fragment = MapFragment.getInstance();
+            loadFragment(resId, fragment);
         } else if (id == R.id.nav_share) {
 
         }
