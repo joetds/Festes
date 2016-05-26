@@ -75,7 +75,7 @@ public class MapFragment extends Fragment {
                                 if (allEvents || eventBean.getFavourite())
                                     googleMap.addMarker(new MarkerOptions()
                                             .position(Event.getLocationAsLatlng(eventBean.getLocation()))
-                                            .title(eventBean.getName())
+                                            .title(eventBean.getName() + "(" + eventBean.getPlace() + ")")
                                             .snippet(eventBean.getDate()));
                             }
                         }
