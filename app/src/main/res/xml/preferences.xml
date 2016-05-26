@@ -1,0 +1,9 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:key="internet_preference"
+        android:entries="@array/entries"
+        android:entryValues="@array/values"
+        android:title="@string/network" />
+
+</PreferenceScreen>

@@ -1,9 +1,9 @@
 package plataformesenxarxa.marcclua.joelmonne.festespopulars.fragments;
 
+import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import com.example.festespopulars.backend.festespopularsAPI.FestespopularsAPI;
 import com.example.festespopulars.backend.festespopularsAPI.model.EventBean;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -23,16 +23,16 @@ import java.util.List;
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.R;
 import plataformesenxarxa.marcclua.joelmonne.festespopulars.models.Event;
 
-public class MapFragment extends Fragment {
-    private SupportMapFragment map;
+public class MapsFragment extends Fragment {
+    private MapFragment map;
     private boolean allEvents;
 
-    public static MapFragment getInstance() {
+    public static MapsFragment getInstance() {
         return getInstance(true);
     }
 
-    public static MapFragment getInstance(boolean allEvents) {
-        MapFragment fragment = new MapFragment();
+    public static MapsFragment getInstance(boolean allEvents) {
+        MapsFragment fragment = new MapsFragment();
         fragment.allEvents = allEvents;
         return fragment;
     }
@@ -45,7 +45,7 @@ public class MapFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        map = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        map = (MapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         putFavouritesEvents();
     }
 
