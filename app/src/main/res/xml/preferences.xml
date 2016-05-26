@@ -1,9 +1,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <EditTextPreference
+        android:key="name_preference"
+        android:title="Name" />
+    <EditTextPreference
+        android:key="place_preference"
+        android:title="Place" />
     <ListPreference
-        android:key="internet_preference"
         android:entries="@array/entries"
         android:entryValues="@array/values"
+        android:key="internet_preference"
         android:title="@string/network" />
-
 </PreferenceScreen>
