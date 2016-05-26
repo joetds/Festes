@@ -45,10 +45,10 @@ public class MyEndpoint {
             Entity taskEntity = new Entity("EventBean", eventBean.getName(), taskBeanParentKey);
             taskEntity.setProperty("name", eventBean.getName());
             taskEntity.setProperty("description", eventBean.getDescription());
-            taskEntity.setProperty("place", eventBean.getPlace());
+            taskEntity.setProperty("place", eventBean.getPlace().toLowerCase());
             taskEntity.setProperty("location", eventBean.getLocation());
             taskEntity.setProperty("date", eventBean.getDate());
-            taskEntity.setProperty("fovourite", eventBean.getFovourite());
+            taskEntity.setProperty("favourite", eventBean.isFavourite());
             datastoreService.put(taskEntity);
             txn.commit();
         } finally {
@@ -62,7 +62,7 @@ public class MyEndpoint {
     public List<EventBean> getEventByPlace(@Named("place") String place) {
         DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
         Key taskBeanParentKey = KeyFactory.createKey("TaskBeanParent", "festespopulars.txt");
-        Query query = new Query("EventBean").setAncestor(taskBeanParentKey).setFilter(new Query.FilterPredicate("place", Query.FilterOperator.EQUAL, place));
+        Query query = new Query("EventBean").setAncestor(taskBeanParentKey).setFilter(new Query.FilterPredicate("place", Query.FilterOperator.EQUAL, place.toLowerCase()));
         List<Entity> results = datastoreService.prepare(query).asList(FetchOptions.Builder.withDefaults());
         return getEventBeans(results);
     }
@@ -85,7 +85,7 @@ public class MyEndpoint {
             eventBean.setPlace((String) result.getProperty("place"));
             eventBean.setLocation((String) result.getProperty("location"));
             eventBean.setDate((String) result.getProperty("date"));
-            eventBean.setFovourite((boolean) result.getProperty("fovourite"));
+            eventBean.setFavourite((boolean) result.getProperty("favourite"));
             eventBeen.add(eventBean);
         }
         return eventBeen;

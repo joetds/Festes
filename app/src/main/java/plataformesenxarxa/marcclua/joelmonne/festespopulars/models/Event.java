@@ -20,7 +20,7 @@ public class Event implements Serializable {
         this.setPlace(eventBean.getPlace());
         this.setLocation(eventBean.getLocation());
         this.setDate(eventBean.getDate());
-        this.setFavourite(eventBean.getFovourite());
+        this.setFavourite(eventBean.getFavourite());
     }
 
     public Event() {
@@ -34,7 +34,7 @@ public class Event implements Serializable {
         eventBean.setPlace(event.getPlace().toLowerCase());
         eventBean.setLocation(event.getLocation());
         eventBean.setDate(event.getDate());
-        eventBean.setFovourite(event.getFavourite());
+        eventBean.setFavourite(event.getFavourite());
         return eventBean;
     }
 

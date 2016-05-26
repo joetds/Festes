@@ -67,18 +67,19 @@ public class MapFragment extends Fragment {
             @Override
             protected void onPostExecute(final List<EventBean> eventBeen) {
                 super.onPostExecute(eventBeen);
-                map.getMapAsync(new OnMapReadyCallback() {
-                    @Override
-                    public void onMapReady(GoogleMap googleMap) {
-                        for (EventBean eventBean : eventBeen) {
-                            if (allEvents || eventBean.getFovourite())
-                            googleMap.addMarker(new MarkerOptions()
-                                    .position(Event.getLocationAsLatlng(eventBean.getLocation()))
-                                    .title(eventBean.getName())
-                                    .snippet(eventBean.getDate()));
+                if (eventBeen != null)
+                    map.getMapAsync(new OnMapReadyCallback() {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
+                            for (EventBean eventBean : eventBeen) {
+                                if (allEvents || eventBean.getFavourite())
+                                    googleMap.addMarker(new MarkerOptions()
+                                            .position(Event.getLocationAsLatlng(eventBean.getLocation()))
+                                            .title(eventBean.getName())
+                                            .snippet(eventBean.getDate()));
+                            }
                         }
-                    }
-                });
+                    });
 
             }
         }.execute();

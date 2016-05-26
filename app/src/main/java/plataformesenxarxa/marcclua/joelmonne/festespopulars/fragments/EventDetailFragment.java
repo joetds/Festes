@@ -3,7 +3,6 @@ package plataformesenxarxa.marcclua.joelmonne.festespopulars.fragments;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.festespopulars.backend.festespopularsAPI.FestespopularsAPI;
+import com.example.festespopulars.backend.festespopularsAPI.model.EventBean;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
@@ -45,8 +45,6 @@ public class EventDetailFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, getString(R.string.create_button_click), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 if (event != null) {
                     event.setFavourite(!event.getFavourite());
                     updateEventInCloud(event);
@@ -64,8 +62,8 @@ public class EventDetailFragment extends Fragment {
                         new AndroidJsonFactory(), null);
                 FestespopularsAPI api = builder.build();
                 try {
-                    api.storeEvent(Event.eventToEventBean(event));
-
+                    EventBean eventBean = Event.eventToEventBean(event);
+                    api.storeEvent(eventBean).execute();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -89,6 +87,6 @@ public class EventDetailFragment extends Fragment {
         date.setText(event.getDate());
         description.setText(event.getDescription());
         place.setText(event.getPlace());
-        favourite.setText("Es favorit?" + event.getFavourite());
+        favourite.setText("Es favorit? " + event.getFavourite());
     }
 }

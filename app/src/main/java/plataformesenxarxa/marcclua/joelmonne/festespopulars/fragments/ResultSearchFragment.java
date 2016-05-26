@@ -55,7 +55,7 @@ public class ResultSearchFragment extends ListFragment {
                         new AndroidJsonFactory(), null);
                 FestespopularsAPI api = builder.build();
                 try {
-                    return api.getEventByPlace(params[0].toLowerCase()).execute().getItems();
+                    return api.getEventByPlace(params[0]).execute().getItems();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

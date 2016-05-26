@@ -9,7 +9,7 @@ public class EventBean {
     private String place;
     private String location;
     private String date;
-    private boolean fovourite;
+    private boolean favourite;
 
     public String getName() {
         return name;
@@ -51,11 +51,11 @@ public class EventBean {
         this.date = date;
     }
 
-    public boolean getFovourite() {
-        return fovourite;
+    public boolean isFavourite() {
+        return favourite;
     }
 
-    public void setFovourite(boolean fovourite) {
-        this.fovourite = fovourite;
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
     }
 }

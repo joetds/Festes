@@ -61,9 +61,6 @@ public class SearchFragment extends Fragment {
                     startActivity(intent);
                 } else {
                     showToast("Camp de busqueda buit");
-                    Intent intent = new Intent(context, ResultSearchActivity.class);
-                    intent.putExtra("search", "Barcelona");
-                    startActivity(intent);
                 }
             }
         });
