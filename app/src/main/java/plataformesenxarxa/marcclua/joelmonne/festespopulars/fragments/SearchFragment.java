@@ -10,9 +10,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -50,18 +52,21 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         context = getActivity();
+        final EditText editText = (EditText) getView().findViewById(R.id.search_text);
         final Button button_search = (Button) getView().findViewById(R.id.boto_cerca);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    checkSearchText(editText);
+                    return true;
+                }
+                return false;
+            }
+        });
         button_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                EditText text = (EditText) getView().findViewById(R.id.search_text);
-                String searchText = text.getText().toString();
-                if (!searchText.equals("")) {
-                    Intent intent = new Intent(context, ResultSearchActivity.class);
-                    intent.putExtra("search", searchText);
-                    startActivity(intent);
-                } else {
-                    showToast("Camp de busqueda buit");
-                }
+                checkSearchText(editText);
             }
         });
 
@@ -104,6 +109,17 @@ public class SearchFragment extends Fragment {
                 dialog.show();
             }
         });
+    }
+
+    private void checkSearchText(EditText editText) {
+        String searchText = editText.getText().toString();
+        if (!searchText.equals("")) {
+            Intent intent = new Intent(context, ResultSearchActivity.class);
+            intent.putExtra("search", searchText);
+            startActivity(intent);
+        } else {
+            showToast("Camp de busqueda buit");
+        }
     }
 
     private boolean goMap(View eventView) {

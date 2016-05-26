@@ -22,6 +22,8 @@
         android:background="@android:drawable/editbox_background"
         android:gravity="center"
         android:hint="@string/search_text"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 
