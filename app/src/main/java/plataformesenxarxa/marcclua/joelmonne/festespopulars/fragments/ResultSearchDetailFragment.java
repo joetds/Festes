@@ -74,7 +74,7 @@ public class ResultSearchDetailFragment extends Fragment {
                                     .position(event.getLocationAsLatlng())
                                     .title(event.getName())
                                     .snippet(event.getDate()));
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(event.getLocationAsLatlng(), 5));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(event.getLocationAsLatlng(), 7));
                         }
                     });
                     return mapFragment;
