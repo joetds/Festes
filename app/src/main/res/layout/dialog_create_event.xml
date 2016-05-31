@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="Name" />
+        android:text="@string/event_name" />
 
 
     <EditText
@@ -29,13 +29,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/editbox_background"
-        android:hint="Escriu el nom" />
+        android:hint="@string/name_text" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="Description" />
+        android:text="@string/description" />
 
     <EditText
         android:id="@+id/description"
@@ -43,14 +43,14 @@
         android:layout_height="100dp"
         android:background="@android:drawable/editbox_background"
         android:gravity="top"
-        android:hint="Posa una descripció (Opcional)"
+        android:hint="@string/description_text"
         android:inputType="textMultiLine" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="Place" />
+        android:text="@string/place" />
 
 
     <EditText
@@ -58,13 +58,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/editbox_background"
-        android:hint="Escriu el nom" />
+        android:hint="@string/place_name" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="Date" />
+        android:text="@string/date" />
 
     <TextView
         android:id="@+id/date"
@@ -72,7 +72,7 @@
         android:textSize="18sp"
         android:layout_height="wrap_content"
         android:background="@android:drawable/editbox_background"
-        android:hint="Posa una data" />
+        android:hint="@string/date_value" />
 
 
     <LinearLayout
@@ -86,14 +86,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/save"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Set Location" />
+            android:text="@string/set_location" />
 
     </LinearLayout>
 </LinearLayout>

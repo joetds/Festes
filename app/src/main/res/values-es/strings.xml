@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Fiestas Populares</string>
-    <string name="navigation_drawer_open">Tanca el menú</string>
+    <string name="navigation_drawer_open">Abre el menú</string>
     <string name="navigation_drawer_close">Cierra el menú</string>
 
     <string name="action_settings">Configuración</string>
@@ -8,7 +8,7 @@
     <string name="title_activity_event">Esdeveniment</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="search_text">Texto a buscar</string>
-    <string name="search">Cerca</string>
+    <string name="search">Búsqueda</string>
     <string name="favourites">Favoritos</string>
     <string name="events_map">Mapa del evento</string>
     <string name="create_new_event">Crea un nuevo evento</string>
@@ -53,4 +53,14 @@
     <string name="my_location_click">Botón de localización pulsado</string>
     <string name="error_field_required">Campo obligatorio</string>
     <string name="preferences">Preferencias</string>
+    <string name="cancel">Cancelar</string>
+    <string name="date">Fecha</string>
+    <string name="date_value">Pulsa para poner una fecha</string>
+    <string name="description">Descripción</string>
+    <string name="description_text">Pon la descripción del evento (Opcional)</string>
+    <string name="event_name">Nombre del evento</string>
+    <string name="name_text">Introduce el nombre del evento</string>
+    <string name="place">Lugar</string>
+    <string name="place_name">Introduce donde tendrá lugar el evento</string>
+    <string name="set_location">Ponte en el mapa</string>
 </resources>

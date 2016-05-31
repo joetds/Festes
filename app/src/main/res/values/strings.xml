@@ -53,4 +53,14 @@
     <string name="GCMmessage">Event distroyed</string>
     <string name="device_not_supported">This device is not supported.</string>
     <string name="my_location_click">MyLocation button clicked</string>
+    <string name="event_name">Event Name</string>
+    <string name="name_text">Put an event name</string>
+    <string name="description">Description</string>
+    <string name="description_text">Put a description of event (Optional)</string>
+    <string name="place">Event Place</string>
+    <string name="place_name">Put the event place</string>
+    <string name="date">Date</string>
+    <string name="date_value">Click to put a date</string>
+    <string name="cancel">Cancel</string>
+    <string name="set_location">Set Location</string>
 </resources>

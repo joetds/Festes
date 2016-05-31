@@ -53,4 +53,14 @@
     <string name="device_not_supported">Aquest dispositiu no és compatible.</string>
     <string name="my_location_click">Botó de localització polsat</string>
     <string name="navigation_drawer_close">Tanca el menú</string>
+    <string name="cancel">Cancelar</string>
+    <string name="date">Data</string>
+    <string name="date_value">Polsa per posar una data</string>
+    <string name="description">Descripció</string>
+    <string name="description_text">Posa la descripció de l\'esdeveniment (Opcional)</string>
+    <string name="event_name">Nom de l\'esdeveniment</string>
+    <string name="name_text">Posa el nom per l\'esdeveniment</string>
+    <string name="place">Lloc</string>
+    <string name="place_name">Posa on tindrà lloc l\'esdeveniment</string>
+    <string name="set_location">Posa\'t al mapa</string>
 </resources>
