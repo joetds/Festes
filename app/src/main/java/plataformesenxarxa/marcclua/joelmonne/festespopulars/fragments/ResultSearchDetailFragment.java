@@ -87,9 +87,9 @@ public class ResultSearchDetailFragment extends Fragment {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Event";
+                    return getString(R.string.event_tittle);
                 case 1:
-                    return "Map";
+                    return getString(R.string.map_tittle);
             }
             return "";
         }

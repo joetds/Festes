@@ -118,7 +118,7 @@ public class SearchFragment extends Fragment {
             intent.putExtra("search", searchText);
             startActivity(intent);
         } else {
-            showToast("Camp de busqueda buit");
+            showToast(getString(R.string.empty_search));
         }
     }
 
@@ -130,7 +130,7 @@ public class SearchFragment extends Fragment {
             startActivityForResult(intent, 1);
             return true;
         } else {
-            showToast("Check empty fields");
+            showToast(getString(R.string.check_empty_search));
         }
         return false;
     }
@@ -143,7 +143,7 @@ public class SearchFragment extends Fragment {
         event.setName(name);
 
         String description = ((TextView) eventView.findViewById(R.id.description)).getText().toString();
-        if (description.equals("")) event.setDescription("No hi ha descripció per aquest event");
+        if (description.equals("")) event.setDescription(getString(R.string.no_description));
         else event.setDescription(description);
 
         String place = ((TextView) eventView.findViewById(R.id.place)).getText().toString();
@@ -189,7 +189,7 @@ public class SearchFragment extends Fragment {
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
                 Snackbar.make(getView(), getString(R.string.event_saved), Snackbar.LENGTH_LONG)
-                        .setAction("Undo", new View.OnClickListener() {
+                        .setAction(getString(R.string.undo), new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 new AsyncTask<Void, Void, Void>() {
@@ -199,7 +199,7 @@ public class SearchFragment extends Fragment {
                                                 new AndroidJsonFactory(), null);
                                         Messaging messaging = builder.build();
                                         try {
-                                            messaging.messagingEndpoint().sendMessage("Ja funcionaaaaaa!!!").execute();
+                                            messaging.messagingEndpoint().sendMessage(getString(R.string.GCMmessage)).execute();
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }

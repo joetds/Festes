@@ -87,6 +87,6 @@ public class EventDetailFragment extends Fragment {
         date.setText(event.getDate());
         description.setText(event.getDescription());
         place.setText(event.getPlace());
-        favourite.setText("Es favorit? " + event.getFavourite());
+        favourite.setText(getString(R.string.its_favourite) + event.getFavourite());
     }
 }

@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Festes Populars</string>
+    <string name="navigation_drawer_open">Obre el menú</string>
+
+    <string name="action_settings">Configuració</string>
+    <string name="boto_cerca">Cercar</string>
+    <string name="title_activity_event">Esdeveniment</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="search_text">Text a cercar</string>
+    <string name="search">Cerca</string>
+    <string name="favourites">Preferits</string>
+    <string name="events_map">Mapa de l\'esdeveniment</string>
+    <string name="create_new_event">Crea un nou esdeveniment</string>
+    <string name="preferences">Preferències</string>
+    <string name="send">Enviar</string>
+    <string name="communicate">Comparteix</string>
+    <string name="title_activity_maps">Mapa</string>
+    <string name="favourite_added">Esdeveniment afegit a preferits</string>
+    <string name="event_saved">Esdeveniment creat desat</string>
+    <string name="create_button_click">Crea el teu esdeveniment</string>
+
+    <!--    Permissions    -->
+    <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>
+    <string name="location_permission_denied"><![CDATA[En aquest exemple es requereix el permís d\'ubicació per habilitar la capa "La meva ubicació". Torneu-ho de nou i permetre l\'accés a utilitzar la ubicació \ nSi el permís ha estat denegat de forma permanent, es pot activar des de l\'opció Configuració del sistema > Aplicacions & gt; \'Google Maps API Donem\'.]]></string>
+    <string name="permission_required_toast">Location permission is required for this demo.</string>
+    <string name="title_activity_maps2">Mapa</string>
+    <string name="title_activity_maps3">Mapa</string>
+    <string name="marker_pressed_information">Si fa clic en l\'esdeveniment serà capaç d\'anar a Google Maps per veure\'n el camí</string>
+    <string name="title_activity_search">Cercar</string>
+    <string name="title_activity_login">Entrar</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Constrasenya (opcional)</string>
+    <string name="action_sign_in">Entra o registra\'t</string>
+    <string name="action_sign_in_short">Entrar</string>
+    <string name="error_invalid_email">Adreça email no vàlida</string>
+    <string name="error_invalid_password">Constrasenya massa curta</string>
+    <string name="error_incorrect_password">Contrasenya incorrecta</string>
+    <string name="error_field_required">Camp és obligatori</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="network">Xarxa</string>
+    <string name="its_favourite">Preferit?</string>
+    <string name="map_tittle">Mapa</string>
+    <string name="event_tittle">Esdeveniment</string>
+    <string name="empty_search">Camp de cerca buit</string>
+    <string name="check_empty_search">Comprova els camps buits</string>
+    <string name="no_description">Esveniment sense descripció</string>
+    <string name="undo">Desfés</string>
+    <string name="GCMmessage">Esdeveniment destruit</string>
+    <string name="device_not_supported">Aquest dispositiu no és compatible.</string>
+    <string name="my_location_click">Botó de localització polsat</string>
+    <string name="navigation_drawer_close">Tanca el menú</string>
+</resources>
